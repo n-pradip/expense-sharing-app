@@ -5,7 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser,Permiss
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name,middle_name, phone_no, role, password=None, password2=None):
         """
-        Creates and saves a User with the given email, phone_no, terms_and_condition, role, and password.
+        Creates and saves a User with the given email, phone_no, role, and password.
         """
         if not email:
             raise ValueError('Users must have an email address')
@@ -102,23 +102,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
 
-class UserTokens(models.Model):
-    password_reset_token = models.CharField(max_length=255, null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
+#     bio = models.TextField(blank=True, null=True)
+#     profile_picture = models.ImageField(upload_to='profile_picture/', blank=True, null=True)
+#     phone_number = models.CharField(max_length=15, blank=True, null=True)
+#     address = models.CharField(max_length=255, blank=True, null=True)
+#     birthdate = models.DateField(blank=True, null=True)
+#     interests = models.CharField(max_length=255, blank=True, null=True)
+#     social_media_links = models.JSONField(blank=True, null=True)
+#     is_subscribed = models.BooleanField(default=False)
 
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='profile_picture/', blank=True, null=True)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
-    birthdate = models.DateField(blank=True, null=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
-    interests = models.CharField(max_length=255, blank=True, null=True)
-    social_media_links = models.JSONField(blank=True, null=True)
-    is_subscribed = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.user.username
+#     def __str__(self):
+#         return self.user.username
 
