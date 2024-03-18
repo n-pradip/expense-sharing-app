@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Categories</title>
+</head>
+<body>
+    <h1>Expense Categories</h1>
+    <ul>
+    {% for category in categories %}
+        <li>{{ category.expense_name }}</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'expense_category_create' %}">Create New Category</a>
+</body>
+</html>
