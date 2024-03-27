@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Settlement</title>
+</head>
+<body>
+    <h1>Create Settlement</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="expense_group">Expense Group:</label>
+        <select name="expense_group" id="expense_group">
+            {% for expense_group in expense_groups %}
+            <option value="{{ expense_group.id }}">{{ expense_group.group.name }} - {{ expense_group.expense.description }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="payer">Payer:</label>
+        <select name="payer" id="payer">
+            {% for member in group.members.all %}
+            <option value="{{ member.id }}">{{ member.first_name }} {{ member.last_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="payee">Payee:</label>
+        <select name="payee" id="payee">
+            {% for member in group.members.all %}
+            <option value="{{ member.id }}">{{ member.first_name }} {{ member.last_name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
