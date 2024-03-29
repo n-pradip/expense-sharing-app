@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser,PermissionsMixin
 
-
-class UserManager(BaseUserManager):
+ 
+class UserManager(BaseUserManager): 
     def create_user(self, email, first_name, last_name,middle_name, phone_no, role, password=None, password2=None):
         """
         Creates and saves a User with the given email, phone_no, role, and password.
@@ -100,19 +100,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
-
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
-#     bio = models.TextField(blank=True, null=True)
-#     profile_picture = models.ImageField(upload_to='profile_picture/', blank=True, null=True)
-#     phone_number = models.CharField(max_length=15, blank=True, null=True)
-#     address = models.CharField(max_length=255, blank=True, null=True)
-#     birthdate = models.DateField(blank=True, null=True)
-#     interests = models.CharField(max_length=255, blank=True, null=True)
-#     social_media_links = models.JSONField(blank=True, null=True)
-#     is_subscribed = models.BooleanField(default=False)
-
-#     def __str__(self):
-#         return self.user.username
-
