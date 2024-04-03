@@ -32,3 +32,4 @@ class Settlement(models.Model):
     payee = models.ForeignKey(User, related_name='payee', on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     settled = models.BooleanField(default=False)
+    is_payement_done = models.BooleanField(default=False, null=True,blank=True)

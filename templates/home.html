@@ -8,19 +8,14 @@
 <body>
     <h1>Welcome {{ user.first_name }} {{ user.last_name }} to Expense Sharing App</h1>
     
-    <h2>My Expenses</h2>
+    <a href="http://localhost:8000/expense/" style="font-size: 18px;">My Expenses</h2>
     <ul>
         {% for expense in expenses %}
         <li>{{ expense.description }} - {{ expense.amount }}</li>
         {% endfor %}
     </ul>
     
-    <h2>My Groups</h2>
-    <ul>
-        {% for group in groups %}
-        <li>{{ group.name }}</li>
-        {% endfor %}
-    </ul>
+
     
     <h2>Expense Groups</h2>
     <ul>

@@ -1,5 +1,3 @@
-<!-- settlement_list.html -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,7 +18,94 @@
         Settled: {% if settlement.settled %} Yes {% else %} No {% endif %}
         <br />
       </li>
-      {% endfor %}
+      {% if not settlement.settled %}
+      <form
+        action="https://rc-epay.esewa.com.np/api/epay/main/v2/form"
+        method="POST"
+      >
+        <input type="text" id="amount" name="amount" value="100" required />
+        <input
+          type="text"
+          id="tax_amount"
+          name="tax_amount"
+          value="10"
+          required
+        />
+        <input
+          type="text"
+          id="total_amount"
+          name="total_amount"
+          value="110"
+          required
+        />
+        <input
+          type="text"
+          id="transaction_uuid"
+          name="transaction_uuid"
+          value="asdf-0-0-0-0"
+          required
+        />
+        <input
+          type="text"
+          id="product_code"
+          name="product_code"
+          value="EPAYTEST"
+          required
+        />
+        <input
+          type="text"
+          id="product_service_charge"
+          name="product_service_charge"
+          value="0"
+          required
+        />
+        <input
+          type="text"
+          id="product_delivery_charge"
+          name="product_delivery_charge"
+          value="0"
+          required
+        />
+        <input
+          type="text"
+          id="success_url"
+          name="success_url"
+          value="https://esewa.com.np"
+          required
+        />
+        <input
+          type="text"
+          id="failure_url"
+          name="failure_url"
+          value="https://google.com"
+          required
+        />
+        <input
+          type="text"
+          id="signed_field_names"
+          name="signed_field_names"
+          value="total_amount,transaction_uuid,product_code"
+          required
+        />
+        <input type="text" id="signature" name="signature" required />
+        <button type="button" onclick="generateSignature()">Generate Signature</button>
+        <input value="Submit" type="submit" />
+      </form>
+      {% endif %} {% endfor %}
     </ul>
+
+    <script>
+      function generateSignature() {
+        var secretKey = "8gBm/:&EnhH.1/q("; // Replace with your actual secret key
+        var totalAmount = document.getElementById("total_amount").value;
+        var transactionUUID = document.getElementById("transaction_uuid").value;
+        var productCode = document.getElementById("product_code").value;
+        var dataToHash = "total_amount=" + totalAmount + ",transaction_uuid=" + transactionUUID + ",product_code=" + productCode;
+
+        var signature = CryptoJS.HmacSHA256(dataToHash, secretKey).toString(CryptoJS.enc.Base64);
+        console.log(signature)
+        document.getElementById("signature").value = signature;
+      }
+    </script>
   </body>
 </html>
