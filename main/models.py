@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import User
+from django.db.models import Q
 class ExpenseCategory(models.Model):
     expense_name = models.CharField(max_length=128)
     description = models.TextField()
@@ -16,17 +17,15 @@ class Expense(models.Model):
     date = models.DateField()
     receipt = models.ImageField(upload_to='receipts/', null=True, blank=True)
     
-class Group(models.Model):
-    name = models.CharField(max_length=100)
-    members = models.ManyToManyField(User)
     
 class ExpenseGroup(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    expense = models.ForeignKey(Expense, on_delete=models.CASCADE)
-    assigned_to = models.ManyToManyField(User)
+    group_name = models.CharField(max_length=100,null=True, blank=True)
+    members = models.ManyToManyField(User)
+    # expense = models.ForeignKey(Expense, on_delete=models.CASCADE,null=True, blank=True)
+    # assigned_to = models.ManyToManyField(User,related_name='assigned_to')
     
 class Settlement(models.Model):
-    expense_group = models.ForeignKey(ExpenseGroup, on_delete=models.CASCADE)
+    expense_group = models.ForeignKey(ExpenseGroup, on_delete=models.CASCADE)  # Update related name here
     payer = models.ForeignKey(User, related_name='payer', on_delete=models.CASCADE)
     payee = models.ForeignKey(User, related_name='payee', on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)

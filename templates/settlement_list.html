@@ -1,0 +1,26 @@
+<!-- settlement_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settlement List</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Settlement List</h1>
+    <ul>
+      {% for settlement in settlements %}
+      <li>
+        Payer: {{ settlement.payer }} <br />
+        Payee: {{ settlement.payee }} <br />
+        Amount: {{ settlement.amount }} <br />
+        Settled: {% if settlement.settled %} Yes {% else %} No {% endif %}
+        <br />
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

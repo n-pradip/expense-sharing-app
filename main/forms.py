@@ -11,15 +11,11 @@ class ExpenseForm(forms.ModelForm):
         model = Expense
         fields = ['description', 'amount', 'category', 'date', 'receipt']
 
-class GroupForm(forms.ModelForm):
-    class Meta:
-        model = Group
-        fields = ['name', 'members']
 
 class ExpenseGroupForm(forms.ModelForm):
     class Meta:
         model = ExpenseGroup
-        fields = ['group', 'expense', 'assigned_to']
+        fields = '__all__'
 
 class SettlementForm(forms.ModelForm):
     class Meta:

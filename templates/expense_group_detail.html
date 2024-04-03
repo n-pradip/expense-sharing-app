@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Group Detail</title>
+</head>
+<body>
+    <h1>Expense Group Detail</h1>
+    <p>Group Name: {{ expense_group.group_name }}</p>
+    <p>Members: {% for member in expense_group.members.all %} {{ member.username }} {% endfor %}</p>
+    <p>Expense: {{ expense_group.expense }}</p>
+    <p>Assigned To: {% for user in expense_group.assigned_to.all %} {{ user.username }} {% endfor %}</p>
+</body>
+</html>

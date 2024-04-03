@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Expense Group</title>
+    <title>Confirm Delete Expense Group</title>
 </head>
 <body>
-    <h1>Create Expense Group</h1>
+    <h1>Confirm Delete Expense Group</h1>
+    <p>Are you sure you want to delete "{{ expense_group.group_name }}"?</p>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">Yes, delete</button>
     </form>
 </body>
 </html>
