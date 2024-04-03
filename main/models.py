@@ -16,6 +16,8 @@ class Expense(models.Model):
     category = models.ForeignKey(ExpenseCategory, on_delete=models.CASCADE, related_name="expense_category")
     date = models.DateField()
     receipt = models.ImageField(upload_to='receipts/', null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="created_by",null=True,blank=True)
+    created_on = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     
     
 class ExpenseGroup(models.Model):
