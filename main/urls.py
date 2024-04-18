@@ -23,4 +23,6 @@ urlpatterns = [
     path('settlement/<int:settlement_id>/edit/', views.settlement_edit, name='settlement_edit'),
     path('settlement/<int:settlement_id>/delete/', views.settlement_delete, name='settlement_delete'),
     path('settlements/', views.settlement_list, name='settlement_list'),
+    path('search/', views.search_expense_category, name='search'),
+
 ]

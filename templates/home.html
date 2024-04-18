@@ -6,25 +6,26 @@
     <title>Expense Sharing App</title>
 </head>
 <body>
-    <h1>Welcome {{ user.first_name }} {{ user.last_name }} to Expense Sharing App</h1>
+    <!-- <h1>Welcome {{ user.first_name }} {{ user.last_name }} to Expense Sharing App</h1> -->
     
-    <a href="http://localhost:8000/expense/" style="font-size: 18px;">My Expenses</h2>
+    <a href="http://localhost:9000/expense/" style="font-size: 18px; color: black; text-decoration: none; font-weight: 600;">My Expenses</a>
     <ul>
         {% for expense in expenses %}
-        <li>{{ expense.description }} - {{ expense.amount }}</li>
+            <li>{{ expense.description }} - {{ expense.amount }}</li>
         {% endfor %}
     </ul>
     
 
     
-    <h2>Expense Groups</h2>
+    <a href="http://localhost:9000/expense_group/" style="font-size: 18px; color: black; text-decoration: none; font-weight: 600;">Expense Groups</a>
     <ul>
         {% for expense_group in expense_groups %}
         <li>{{ expense_group.group.name }} - {{ expense_group.expense.description }}</li>
         {% endfor %}
     </ul>
     
-    <h2>Settlements</h2>
+    <a href="http://localhost:9000/settlements/" style="font-size: 18px; color: black; text-decoration: none; font-weight: 600;">Settlements</a>
+
     <ul>
         {% for settlement in settlements %}
         <li>Payer: {{ settlement.payer.first_name }} {{ settlement.payer.last_name }} - Payee: {{ settlement.payee.first_name }} {{ settlement.payee.last_name }} - Amount: {{ settlement.amount }}</li>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get" action="">
+        {{ form.as_p }}
+        <input type="submit" value="Search">
+    </form>
+    
+    <h2>Results:</h2>
+    {% if items %}
+        <ul>
+            {% for item in items %}
+                <li>{{ item.expense_name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    
+    
+</body>
+</html>

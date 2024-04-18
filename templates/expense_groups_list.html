@@ -11,20 +11,13 @@
 </head>
 
 <body>
-    <h1>Settlement List</h1>
+    <h1>Expense Group List</h1>
     <ul>
-        {% for settlement in settlements %}
+        {% for expense_group in expense_groups %}
         <li>
-            Payer: {{ settlement.payer }} <br>
-            Payee: {{ settlement.payee }} <br>
-            Amount: {{ settlement.amount }} <br>
-            Settled:
-            {% if settlement.settled %}
-            Yes
-            {% else %}
-            No
-            {% endif %}
-            <br>
+            Group name: {{ expense_group.group_name }} <br>
+            Members: {{ expense_group.group_name }} <br>
+
         </li>
         {% endfor %}
     </ul>

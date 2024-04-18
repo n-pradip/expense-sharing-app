@@ -6,6 +6,12 @@ class ExpenseCategoryForm(forms.ModelForm):
         model = ExpenseCategory
         fields = ['expense_name', 'description']
 
+class ExpenseCategoryFilterForm(forms.ModelForm):
+    class Meta:
+        model = ExpenseCategory
+        fields = ['expense_name']
+        # exclude = ['','']
+
 class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense

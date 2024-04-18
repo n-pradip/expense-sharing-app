@@ -1,4 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .models import ExpenseGroup
+from .forms import ExpenseGroupForm
+from django.shortcuts import render, redirect, get_object_or_404
 from main.models import ExpenseCategory
 from .forms import *
 from main.models import *
@@ -92,9 +95,13 @@ def expense_delete(request, expense_id):
         return redirect('homepage')
     return render(request, 'expense_confirm_delete.html', {'expense': expense})
 
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import ExpenseGroup
-from .forms import ExpenseGroupForm
+
+
+@login_required
+def expense_group_list(request):
+    expense_groups = Settlement.objects.all()
+    return render(request, 'expense_groups_list.html', {'expense_groups': expense_groups})
+
 
 @login_required
 def expense_group_create(request):
@@ -168,3 +175,19 @@ def settlement_delete(request, settlement_id):
 def settlement_list(request):
     settlements = Settlement.objects.all()
     return render(request, 'settlement_list.html', {'settlements': settlements})
+
+@login_required
+def search_expense_category(request):
+    form = ExpenseCategoryFilterForm(request.GET or None)
+    items = []
+    
+    if form.is_valid():
+        title_query = form.cleaned_data.get('expense_name')
+        if title_query:
+            items = ExpenseCategory.objects.filter(expense_name__icontains=title_query)
+    
+    context = {
+        'form': form,
+        'items': items,
+    }
+    return render(request, 'search.html', context)
